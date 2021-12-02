@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.project {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.project__title {
+  color: red;
+  text-align: center;
+  flex-basis: 100%;
+}
