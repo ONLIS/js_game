@@ -1,6 +1,7 @@
 "use strict";
 
 let randNumber;
+let count = 10;
 //=============================================================================================
 
 let getRandom = function (min, max) {
@@ -25,20 +26,34 @@ function mainFunction() {
     alert("Введите число!");
     mainFunction();
   } else if (isNumber(userNumber)) {
+    count--;
     userNumber = parseFloat(userNumber);
-    if (userNumber > randNumber) {
-      alert("Загаданное число меньше. Повторите попытку");
+    if (userNumber > randNumber && count > 0) {
+      alert("Загаданное число меньше, осталось попыток: " + count);
       mainFunction();
-    } else if (userNumber < randNumber) {
-      alert("Загаданное число больше. Повторите попытку");
+    } else if (userNumber < randNumber && count > 0) {
+      alert("Загаданное число больше, осталось попыток: " + count);
       mainFunction();
     } else if (userNumber === randNumber) {
-      alert("Поздравляю, Вы угадали!!!");
+      let qst = confirm("Поздравляю, Вы угадали!!!\nХотите сыграть еще раз?");
+      newGame(qst);
+    } else if (count == 0) {
+      let qst = confirm("Попытки закончились.\nХотите сыграть еще раз?");
+      newGame(qst);
     }
   }
 }
 //-------------------------------
-
+function newGame(answer) {
+  if (answer) {
+    randNumber = getRandom(1, 100);
+    count = 10;
+    mainFunction();
+  } else {
+    alert("Спасибо за игру!");
+  }
+}
+//-------------------------------
 //=============================================================================================
 randNumber = getRandom(1, 100);
 mainFunction();
